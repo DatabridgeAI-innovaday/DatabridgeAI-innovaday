@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daycoval BackOffice - DATABRIDGE IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== DAYCOVAL BACKOFFICE ==================== -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>Daycoval BackOffice</span>
+            </div>
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>João Silva</span>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <a href="#" class="nav-link active">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-credit-card"></i> Cartão
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-users"></i> Clientes
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-file-invoice"></i> Contratos
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-chart-line"></i> Relatórios
+        </a>
+        <a href="#" class="nav-link">
+            <i class="fas fa-cog"></i> Configurações
+        </a>
+    </nav>
+
+    <main class="main-content" id="mainContent">
+        <div class="dashboard">
+            <h1>Dashboard</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-credit-card"></i>
+                    <div class="stat-info">
+                        <h3>Cartões Ativos</h3>
+                        <p class="stat-value">1.234</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <h3>Clientes</h3>
+                        <p class="stat-value">5.678</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-file-invoice"></i>
+                    <div class="stat-info">
+                        <h3>Contratos Pendentes</h3>
+                        <p class="stat-value">89</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div class="stat-info">
+                        <h3>Valor Total</h3>
+                        <p class="stat-value">R$ 2.4M</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== FLOATING ACTION BUTTON ==================== -->
+    <button class="fab" id="fabButton" title="DATABRIDGE IA">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- ==================== LOGIN MODAL ==================== -->
+    <div class="modal-overlay" id="loginOverlay" style="display: none;"></div>
+    <div class="login-modal" id="loginModal" style="display: none;">
+        <div class="modal-header">
+            <h3>DATABRIDGE IA</h3>
+            <button class="close-btn" id="closeLogin">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Usuário ou Email</label>
+                    <input type="text" id="email" placeholder="Digite seu email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="loginBtn">
+                    Entrar
+                </button>
+                <div class="login-links">
+                    <a href="#">Esqueci minha senha</a>
+                    <a href="#">Criar conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== PROFILE SELECTION ==================== -->
+    <div class="profile-selection" id="profileSelection" style="display: none;">
+        <div class="modal-header">
+            <h3>Selecione seu Perfil</h3>
+            <button class="close-btn" id="closeProfileSelection">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="profile-cards">
+            <div class="profile-card" data-profile="user">
+                <i class="fas fa-user"></i>
+                <h4>Usuário</h4>
+                <p>Acesso básico ao chat e biblioteca</p>
+                <button class="btn btn-primary">Selecionar</button>
+            </div>
+            <div class="profile-card" data-profile="developer">
+                <i class="fas fa-code"></i>
+                <h4>Desenvolvedor</h4>
+                <p>Acesso completo + ferramentas avançadas</p>
+                <button class="btn btn-primary">Selecionar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CHAT INTERFACE ==================== -->
+    <div class="chat-container" id="chatContainer" style="display: none;">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <h3>DATABRIDGE IA</h3>
+                <span class="status-indicator">
+                    <i class="fas fa-circle"></i> Online
+                </span>
+            </div>
+            <div class="chat-header-actions">
+                <button class="icon-btn" id="openProfileBtn" title="Meu Perfil">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <button class="icon-btn" id="minimizeChat" title="Minimizar">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="icon-btn" id="closeChat" title="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <div class="message-text">Olá! Como posso ajudar?</div>
+                    <div class="message-time">Agora</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Digite sua mensagem..." autocomplete="off">
+            <button class="send-btn" id="sendBtn" disabled>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== PROFILE PANEL ==================== -->
+    <div class="profile-panel" id="profilePanel" style="display: none;">
+        <div class="profile-panel-header">
+            <h3>Meu Perfil</h3>
+            <button class="close-btn" id="closeProfilePanel">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="profile-info">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h4 id="profileName">Usuário</h4>
+            <p id="profileType">Developer</p>
+        </div>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-label">Nível</span>
+                <span class="stat-value" id="profileLevel">10</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Tokens</span>
+                <span class="stat-value" id="profileTokens">25.430</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Mensagens</span>
+                <span class="stat-value" id="profileMessages">45</span>
+            </div>
+        </div>
+        <button class="btn btn-secondary btn-block" id="viewLibraryBtn">
+            <i class="fas fa-book"></i> Ver Biblioteca
+        </button>
+        <button class="btn btn-outline btn-block" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+    </div>
+
+    <!-- ==================== LIBRARY ==================== -->
+    <div class="library-container" id="libraryContainer" style="display: none;">
+        <div class="library-header">
+            <h3><i class="fas fa-book"></i> Biblioteca de Mensagens</h3>
+            <button class="close-btn" id="closeLibrary">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="library-filters">
+            <input type="text" id="searchLibrary" placeholder="Buscar mensagens...">
+            <select id="filterFolder">
+                <option value="">Todas as pastas</option>
+                <option value="Geral">Geral</option>
+                <option value="Importante">Importante</option>
+                <option value="Trabalho">Trabalho</option>
+            </select>
+            <button class="btn-clear-library" id="clearLibraryBtn" title="Limpar toda a biblioteca">
+                <i class="fas fa-trash-alt"></i> Limpar Biblioteca
+            </button>
+        </div>
+        <div class="library-content" id="libraryContent">
+            <div class="empty-library">
+                <i class="fas fa-folder-open"></i>
+                <p>Nenhuma mensagem salva ainda</p>
+                <small>Salve mensagens do chat para vê-las aqui</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== REPORT MODAL ==================== -->
+    <div class="report-container" id="reportContainer" style="display: none;">
+        <div class="report-header">
+            <h3><i class="fas fa-chart-bar"></i> Relatório de Propostas - Últimos 30 Dias</h3>
+            <button class="close-btn" id="closeReport">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="report-summary">
+            <div class="summary-card">
+                <i class="fas fa-file-invoice"></i>
+                <div>
+                    <span class="summary-label">Total de Propostas</span>
+                    <span class="summary-value" id="totalPropostas">0</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-dollar-sign"></i>
+                <div>
+                    <span class="summary-label">Valor Total</span>
+                    <span class="summary-value" id="valorTotal">R$ 0,00</span>
+                </div>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <span class="summary-label">Valor Médio</span>
+                    <span class="summary-value" id="valorMedio">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+        <div class="report-info">
+            <div class="report-info-text">
+                <i class="fas fa-calendar-check"></i>
+                <span>Consulta realizada em <strong id="reportDateTime"></strong></span>
+            </div>
+            <div class="report-info-text">
+                <i class="fas fa-list"></i>
+                <span><strong id="reportRowCount">0</strong> registros encontrados</span>
+            </div>
+        </div>
+        <div class="report-content" id="reportContent">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Esteira</th>
+                        <th>Quantidade</th>
+                        <th>Valor Total</th>
+                        <th>Valor Médio</th>
+                        <th>Tempo Médio</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="reportTableBody">
+                    <!-- Conteúdo será preenchido dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== SQL QUERY MODAL ==================== -->
+    <div class="sql-modal" id="sqlModal" style="display: none;">
+        <div class="sql-modal-header">
+            <h3><i class="fas fa-code"></i> Query SQL Gerada</h3>
+            <button class="close-btn" id="closeSqlModal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="sql-modal-content">
+            <div class="sql-info">
+                <i class="fas fa-info-circle"></i>
+                <span>Query para novos cartões de INSS desde novembro de 2025</span>
+            </div>
+            <div class="sql-code-container">
+                <pre id="sqlCode"><code>USE DCV_CARTAOCREDITO
+GO
+
+SELECT CodProposta, cartao.NumeroConta, NumeroContrato, CodStatusConta, VlrLimite, cartao.DataHoraInclusao 
+FROM DCV_CARTAOCREDITO.dbo.Cartao cartao
+    INNER JOIN DCV_CARTAOCREDITO.dbo.Orgao orgao on (orgao.CodOrgao = cartao.CodOrgao)
+    INNER JOIN DCV_CARTAOCREDITO.dbo.Empregador empregador on (empregador.CodEmpregador = orgao.CodEmpregador)
+WHERE 
+    cartao.DataHoraInclusao >= '2025-11-01'
+    AND empregador.CodEmpregador = 3</code></pre>
+            </div>
+            <div class="sql-actions">
+                <button class="btn btn-info" id="explainTablesBtn">
+                    <i class="fas fa-table"></i> Explicar Tabelas
+                </button>
+                <button class="btn btn-primary" id="copySqlBtn">
+                    <i class="fas fa-copy"></i> Copiar Query
+                </button>
+                <button class="btn btn-secondary" id="executeSqlBtn">
+                    <i class="fas fa-play"></i> Executar (Demo)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TABLE EXPLANATION MINI-MODAL ==================== -->
+    <div class="table-explain-modal" id="tableExplainModal" style="display: none;">
+        <div class="table-explain-header">
+            <h4><i class="fas fa-database"></i> Estrutura das Tabelas</h4>
+            <button class="close-btn-mini" id="closeTableExplain">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="table-explain-content">
+            <div class="table-section">
+                <h5><i class="fas fa-table"></i> DCV_CARTAOCREDITO.dbo.Cartao</h5>
+                <p class="table-description">Tabela principal que armazena informações dos cartões de crédito consignado.</p>
+                <ul class="column-list">
+                    <li><span class="column-name">CodProposta</span> - Código único da proposta</li>
+                    <li><span class="column-name">NumeroConta</span> - Número da conta do cartão</li>
+                    <li><span class="column-name">NumeroContrato</span> - Número do contrato</li>
+                    <li><span class="column-name">CodStatusConta</span> - Status da conta</li>
+                    <li><span class="column-name">VlrLimite</span> - Valor do limite aprovado</li>
+                    <li><span class="column-name">DataHoraInclusao</span> - Data de criação do registro</li>
+                    <li><span class="column-name">CodOrgao</span> - Chave estrangeira para Orgao</li>
+                </ul>
+            </div>
+            
+            <div class="table-section">
+                <h5><i class="fas fa-table"></i> DCV_CARTAOCREDITO.dbo.Orgao</h5>
+                <p class="table-description">Tabela intermediária que relaciona o órgão ao empregador.</p>
+                <ul class="column-list">
+                    <li><span class="column-name">CodOrgao</span> - Código único do órgão</li>
+                    <li><span class="column-name">CodEmpregador</span> - Chave estrangeira para Empregador</li>
+                </ul>
+            </div>
+            
+            <div class="table-section">
+                <h5><i class="fas fa-table"></i> DCV_CARTAOCREDITO.dbo.Empregador</h5>
+                <p class="table-description">Tabela que armazena informações dos empregadores/convênios.</p>
+                <ul class="column-list">
+                    <li><span class="column-name">CodEmpregador</span> - Código único do empregador</li>
+                    <li><span class="column-name-highlight">CodEmpregador = 3</span> - Representa o INSS nesta query</li>
+                </ul>
+            </div>
+            
+            <div class="relationship-section">
+                <h5><i class="fas fa-project-diagram"></i> Relacionamentos</h5>
+                <div class="relationship-diagram">
+                    <code>Cartao.CodOrgao → Orgao.CodOrgao</code><br>
+                    <code>Orgao.CodEmpregador → Empregador.CodEmpregador</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
