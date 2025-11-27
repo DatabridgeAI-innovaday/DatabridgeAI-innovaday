@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpar Biblioteca - DATABRIDGE IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-danger {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c62828;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status.success {
+            background: #c8e6c9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .status.info {
+            background: #e3f2fd;
+            color: #1565c0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🗑️</div>
+        <h1>Limpar Biblioteca</h1>
+        <p>Esta ação irá remover todos os itens salvos na biblioteca do DATABRIDGE IA. Esta operação não pode ser desfeita.</p>
+        
+        <div id="status" class="status"></div>
+        
+        <div>
+            <button class="btn btn-danger" onclick="limparBiblioteca()">
+                🗑️ Limpar Biblioteca
+            </button>
+            <button class="btn btn-secondary" onclick="window.close()">
+                ❌ Cancelar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function limparBiblioteca() {
+            const status = document.getElementById('status');
+            
+            try {
+                // Verificar quantos itens existem
+                const savedMessages = JSON.parse(localStorage.getItem('dcc_saved_messages') || '[]');
+                const count = savedMessages.length;
+                
+                if (count === 0) {
+                    status.className = 'status info';
+                    status.textContent = '📭 A biblioteca já está vazia!';
+                    return;
+                }
+                
+                // Limpar localStorage
+                localStorage.removeItem('dcc_saved_messages');
+                
+                status.className = 'status success';
+                status.textContent = `✅ Sucesso! ${count} ${count === 1 ? 'item removido' : 'itens removidos'} da biblioteca.`;
+                
+                // Desabilitar botão
+                document.querySelector('.btn-danger').disabled = true;
+                document.querySelector('.btn-danger').style.opacity = '0.5';
+                document.querySelector('.btn-danger').style.cursor = 'not-allowed';
+                
+            } catch (error) {
+                status.className = 'status error';
+                status.style.background = '#ffcdd2';
+                status.style.color = '#c62828';
+                status.textContent = '❌ Erro ao limpar biblioteca: ' + error.message;
+            }
+        }
+        
+        // Verificar status ao carregar
+        window.addEventListener('load', () => {
+            const savedMessages = JSON.parse(localStorage.getItem('dcc_saved_messages') || '[]');
+            const count = savedMessages.length;
+            
+            const status = document.getElementById('status');
+            status.className = 'status info';
+            status.textContent = `📊 Atualmente existem ${count} ${count === 1 ? 'item' : 'itens'} na biblioteca.`;
+        });
+    </script>
+</body>
+</html>
+

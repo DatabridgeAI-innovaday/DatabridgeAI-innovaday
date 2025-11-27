@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Usar - Daycoval DATABRIDGE IA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h2 i {
+            color: #3498db;
+        }
+
+        .credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .credential-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .credential-card h3 {
+            color: #3498db;
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        .credential-card p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .credential-card code {
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: steps;
+        }
+
+        .steps li {
+            counter-increment: steps;
+            padding: 1rem 1rem 1rem 3.5rem;
+            margin: 0.75rem 0;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .steps li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature i {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .start-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-robot" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+            <h1>DATABRIDGE IA</h1>
+            <p>Guia de Uso e Demonstração</p>
+        </div>
+
+        <div class="content">
+            <!-- Como Iniciar -->
+            <div class="section">
+                <h2><i class="fas fa-rocket"></i> Como Iniciar</h2>
+                <ol class="steps">
+                    <li>Abra o arquivo <strong>index.html</strong> no seu navegador</li>
+                    <li>Clique no <strong>botão azul flutuante</strong> com ícone de robô (canto inferior direito)</li>
+                    <li>Faça login com uma das credenciais abaixo</li>
+                    <li>Selecione seu perfil (Usuário ou Desenvolvedor)</li>
+                    <li>Comece a interagir com o assistente!</li>
+                </ol>
+            </div>
+
+            <!-- Credenciais -->
+            <div class="section">
+                <h2><i class="fas fa-key"></i> Credenciais de Acesso</h2>
+                <div class="credentials">
+                    <div class="credential-card">
+                        <h3><i class="fas fa-user-shield"></i> Administrador</h3>
+                        <p><strong>Email:</strong> <code>admin@daycoval.com</code></p>
+                        <p><strong>Senha:</strong> <code>admin123</code></p>
+                        <p><strong>Perfil:</strong> Desenvolvedor</p>
+                    </div>
+                    <div class="credential-card">
+                        <h3><i class="fas fa-user"></i> Usuário Comum</h3>
+                        <p><strong>Email:</strong> <code>user@daycoval.com</code></p>
+                        <p><strong>Senha:</strong> <code>user123</code></p>
+                        <p><strong>Perfil:</strong> Usuário</p>
+                    </div>
+                    <div class="credential-card">
+                        <h3><i class="fas fa-code"></i> Desenvolvedor</h3>
+                        <p><strong>Email:</strong> <code>dev@daycoval.com</code></p>
+                        <p><strong>Senha:</strong> <code>dev123</code></p>
+                        <p><strong>Perfil:</strong> Desenvolvedor</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funcionalidades -->
+            <div class="section">
+                <h2><i class="fas fa-star"></i> Funcionalidades Demonstradas</h2>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <p>Sistema de Login</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-circle"></i>
+                        <p>Seleção de Perfil</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-comments"></i>
+                        <p>Chat Interativo</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-magic"></i>
+                        <p>Animações Realistas</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-save"></i>
+                        <p>Salvar Mensagens</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-book"></i>
+                        <p>Biblioteca Organizada</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Perguntas Sugeridas -->
+            <div class="section">
+                <h2><i class="fas fa-question-circle"></i> Perguntas Sugeridas</h2>
+                <p>Experimente essas perguntas no chat para ver respostas contextuais:</p>
+                <ol class="steps">
+                    <li>"Como consultar um cartão?"</li>
+                    <li>"Status de contratos pendentes"</li>
+                    <li>"Gerar relatório de clientes"</li>
+                    <li>"Ver configurações do sistema"</li>
+                    <li>"Ajuda com integração INSS"</li>
+                </ol>
+            </div>
+
+            <!-- Observações -->
+            <div class="section">
+                <h2><i class="fas fa-info-circle"></i> Observações Importantes</h2>
+                <div class="note">
+                    <strong>⚠️ Atenção:</strong> Esta é uma versão de demonstração que roda 100% offline (exceto ícones). 
+                    Os dados são salvos localmente no navegador e não são compartilhados entre máquinas.
+                </div>
+            </div>
+
+            <!-- Botão Iniciar -->
+            <center>
+                <a href="index.html" class="start-btn">
+                    <i class="fas fa-play"></i> Iniciar Demonstração
+                </a>
+            </center>
+        </div>
+    </div>
+</body>
+</html>
+
